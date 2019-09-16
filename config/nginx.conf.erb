@@ -1,0 +1,89 @@
+daemon off;
+# Heroku dynos have at least 4 cores
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+
+events {
+  use epoll;
+  accept_mutex on;
+  worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
+}
+
+http {
+  gzip on;
+  gzip_comp_level 2;
+  gzip_min_length 512;
+
+  server_tokens off;
+  
+  log_format main '$time_iso8601 - $status $request - client IP: $http_x_forwarded_for - <%= ENV['DYNO'] %> to $upstream_addr - upstream status: $upstream_status, upstream_response_time $upstream_response_time, request_time $request_time';
+  access_log /dev/stdout main;
+  error_log /dev/stdout notice;
+  log_not_found on;
+
+  include mime.types;
+  default_type application/octet-stream;
+  sendfile on;
+
+  # Must read the body in 5 seconds.
+  client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>;
+
+  upstream upstream_proxy_api {
+    server kongee.rr-kong-ee.app.localspace:8443;
+  }
+
+  upstream upstream_admin_api {
+    server kongee.rr-kong-ee.app.localspace:8444;
+  }
+
+  upstream upstream_admin_ui {
+    server kongee.rr-kong-ee.app.localspace:8445;
+  }
+
+  upstream upstream_dev_portal {
+    server kongee.rr-kong-ee.app.localspace:8003;
+  }
+
+  upstream upstream_dev_portal {
+    server kongee.rr-kong-ee.app.localspace:8004/files;
+  }
+
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name _;
+
+    location / {
+      set $upstream upstream_proxy_api;
+      proxy_pass https://$upstream;
+      proxy_set_header x-forwarded-host $host;
+      proxy_set_header Host rr-kong-ee.herokuapp.com;
+    }
+
+    location /admin/api {
+      set $upstream upstream_admin_api;
+      proxy_pass https://$upstream;
+      proxy_set_header x-forwarded-host $host;
+      proxy_set_header Host rr-kong-ee.herokuapp.com;
+    }
+
+    location /admin/ui {
+      set $upstream upstream_admin_ui;
+      proxy_pass https://$upstream;
+      proxy_set_header x-forwarded-host $host;
+      proxy_set_header Host rr-kong-ee.herokuapp.com;
+    }
+
+    location /developers/portal {
+      set $upstream upstream_dev_portal;
+      proxy_pass https://$upstream;
+      proxy_set_header x-forwarded-host $host;
+      proxy_set_header Host rr-kong-ee.herokuapp.com;
+    }
+
+    location /developers/portal/files {
+      set $upstream upstream_dev_portal_files;
+      proxy_pass https://$upstream;
+      proxy_set_header x-forwarded-host $host;
+      proxy_set_header Host rr-kong-ee.herokuapp.com;
+    }
+  }
+}
