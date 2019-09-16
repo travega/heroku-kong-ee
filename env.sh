@@ -1,0 +1,7 @@
+export DATABASE_URL='postgres://u4bluu9ll600im:p366a6abe6227eab02b2047503c51ed73d4cd72c4fc43e769f30f18d5aeb6480d@ec2-52-16-141-161.eu-west-1.compute.amazonaws.com:5432/de6k8hdotvkfrg'
+export KONG_DATABASE='postgres://kong:p006e0148b60987caded411b9de92e18179389f66d75ee871dc1d32be4e4e1c93@ec2-52-16-141-161.eu-west-1.compute.amazonaws.com:5432/de6k8hdotvkfrg'
+export KONG_LICENSE_DATA='{"license":{"signature":"3a4e39c4adf5959a56df9361477edc70709ecaf23464519e0c6ae9a14fc752b4554ab9219db3a6d524bf47f70de18ceacfc0e0a93242f350a581593f041a91da","payload":{"customer":"VRP Consulting (Rolls Royce)","license_creation_date":"2019-09-09","product_subscription":"Kong Enterprise Edition","admin_seats":"5","support_plan":"None","license_expiration_date":"2019-10-09","license_key":"0011K00002EVbr3QAD_a1V1K000007KOEeUAO"},"version":1}}'
+export KONG_PG_DATABASE='de6k8hdotvkfrg'
+export KONG_PG_HOST='ec2-52-16-141-161.eu-west-1.compute.amazonaws.com'
+export KONG_PG_PASSWORD='p006e0148b60987caded411b9de92e18179389f66d75ee871dc1d32be4e4e1c93'
+export KONG_PG_USER='kong'

@@ -1,0 +1,10 @@
+setup:
+  addons:
+    - plan: heroku-postgresql:private-0
+      as: kong-ee-database
+build:
+  docker:
+    web: api-proxy/Dockerfile
+    admin-ui: admin-ui/Dockerfile
+    admin-api: admin-api/Dockerfile
+    dev-portal: dev-portal/Dockerfile
