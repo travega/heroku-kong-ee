@@ -50,8 +50,12 @@ http {
     location / {
       set $upstream upstream_proxy_api;
       proxy_pass http://$upstream/;
-      proxy_set_header x-forwarded-host $host;
-      proxy_set_header Host rr-kong-ee.herokuapp.com;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Scheme $scheme;
     }
 
     location /admin/api {
@@ -60,8 +64,12 @@ http {
     location /admin/api/ {
       set $upstream upstream_admin_api;
       proxy_pass http://$upstream/;
-      proxy_set_header x-forwarded-host $host;
-      proxy_set_header Host rr-kong-ee.herokuapp.com;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Scheme $scheme;
     }
 
     location /admin/ui {
@@ -70,8 +78,12 @@ http {
     location /admin/ui/ {
       set $upstream upstream_admin_ui;
       proxy_pass http://$upstream/;
-      proxy_set_header x-forwarded-host $host;
-      proxy_set_header Host rr-kong-ee.herokuapp.com;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Scheme $scheme;
     }
 
     location /developers/portal {
@@ -80,8 +92,12 @@ http {
     location /developers/portal/ {
       set $upstream upstream_dev_portal;
       proxy_pass http://$upstream/;
-      proxy_set_header x-forwarded-host $host;
-      proxy_set_header Host rr-kong-ee.herokuapp.com;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Scheme $scheme;
     }
   }
 }
