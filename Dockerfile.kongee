@@ -1,1 +1,5 @@
 FROM kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-edition
+
+RUN apk update && apk add curl openssh python
+
+CMD kong migrations bootstrap && kong start
