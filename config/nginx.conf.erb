@@ -43,10 +43,6 @@ http {
     server kongee.rr-kong-ee.app.localspace:8003;
   }
 
-  upstream upstream_dev_portal_files {
-    server kongee.rr-kong-ee.app.localspace:8004/files;
-  }
-
   server {
     listen <%= ENV["PORT"] %>;
     server_name _;
@@ -74,13 +70,6 @@ http {
 
     location /developers/portal {
       set $upstream upstream_dev_portal;
-      proxy_pass https://$upstream;
-      proxy_set_header x-forwarded-host $host;
-      proxy_set_header Host rr-kong-ee.herokuapp.com;
-    }
-
-    location /developers/portal/files {
-      set $upstream upstream_dev_portal_files;
       proxy_pass https://$upstream;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
