@@ -49,28 +49,37 @@ http {
 
     location / {
       set $upstream upstream_proxy_api;
-      proxy_pass https://$upstream;
+      proxy_pass https://$upstream/;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
     }
 
     location /admin/api {
+        return 302 /admin/api/
+    }
+    location /admin/api/ {
       set $upstream upstream_admin_api;
-      proxy_pass https://$upstream;
+      proxy_pass https://$upstream/;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
     }
 
     location /admin/ui {
+        return 302 /admin/ui/
+    }
+    location /admin/ui/ {
       set $upstream upstream_admin_ui;
-      proxy_pass https://$upstream;
+      proxy_pass https://$upstream/;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
     }
 
     location /developers/portal {
+        return 302 /developers/portal/
+    }
+    location /developers/portal/ {
       set $upstream upstream_dev_portal;
-      proxy_pass http://$upstream;
+      proxy_pass http://$upstream/;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
     }
