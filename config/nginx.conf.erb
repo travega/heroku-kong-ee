@@ -55,7 +55,7 @@ http {
     }
 
     location /admin/api {
-        return 302 /admin/api/
+        return 302 /admin/api/;
     }
     location /admin/api/ {
       set $upstream upstream_admin_api;
@@ -65,7 +65,7 @@ http {
     }
 
     location /admin/ui {
-        return 302 /admin/ui/
+        return 302 /admin/ui/;
     }
     location /admin/ui/ {
       set $upstream upstream_admin_ui;
@@ -75,7 +75,7 @@ http {
     }
 
     location /developers/portal {
-        return 302 /developers/portal/
+        return 302 /developers/portal/;
     }
     location /developers/portal/ {
       set $upstream upstream_dev_portal;
