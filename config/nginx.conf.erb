@@ -70,7 +70,7 @@ http {
 
     location /developers/portal {
       set $upstream upstream_dev_portal;
-      proxy_pass https://$upstream;
+      proxy_pass http://$upstream;
       proxy_set_header x-forwarded-host $host;
       proxy_set_header Host rr-kong-ee.herokuapp.com;
     }
