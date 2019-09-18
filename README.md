@@ -2,8 +2,6 @@
 
 This is a guide on how to deploy Kong Enterprise Edition on Heroku. You will require a [Private Space](https://devcenter.heroku.com/articles/private-spaces) for this as there are multiple services running on multiple ports.
 
----
-
 ## Setup
 
 ### **Step 1:** Checkout this repo.
@@ -53,7 +51,7 @@ heroku config:add -r kong KONG_VITALS=on                          # Health and p
 
 ## Deploy
 
-### ***Step 1:** Deploy the Kong EE app
+### **Step 1:** Deploy the Kong EE app
 
 We will be deploying Kong EE as a Docker image to a Docker conatiner in Heroku. First we need to set the Heroku stack to run our Docker container.
 
