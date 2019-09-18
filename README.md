@@ -47,8 +47,6 @@ heroku config:add -r kong KONG_PORTAL=on                          # Enable the K
 heroku config:add -r kong KONG_VITALS=on                          # Health and performance metrics
 ```
 
----
-
 ## Deploy
 
 ### **Step 1:** Deploy the Kong EE app
