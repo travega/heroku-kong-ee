@@ -28,19 +28,19 @@ http {
   client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>;
 
   upstream upstream_proxy_api {
-    server kongee.rr-kong-ee.app.localspace:8000;
+    server kongee.<my-KONG-app-name>.app.localspace:8000;
   }
 
   upstream upstream_admin_api {
-    server kongee.rr-kong-ee.app.localspace:8001;
+    server kongee.<my-KONG-app-name>.app.localspace:8001;
   }
 
   upstream upstream_admin_ui {
-    server kongee.rr-kong-ee.app.localspace:8002;
+    server kongee.<my-KONG-app-name>.app.localspace:8002;
   }
 
   upstream upstream_dev_portal {
-    server kongee.rr-kong-ee.app.localspace:8003;
+    server kongee.<my-KONG-app-name>.app.localspace:8003;
   }
 
   server {
