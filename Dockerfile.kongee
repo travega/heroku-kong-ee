@@ -2,4 +2,4 @@ FROM kong-docker-kong-enterprise-edition-docker.bintray.io/kong-enterprise-editi
 
 RUN apk update && apk add curl openssh python
 
-CMD sh app/heroku-exec.sh && kong migrations bootstrap && kong start
+CMD kong migrations bootstrap && kong start
